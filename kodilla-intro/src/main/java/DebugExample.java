@@ -6,7 +6,9 @@ public class DebugExample {
         System.out.println(firstNumber);
         System.out.println(secondNumber);
 
-        if (firstNumber > secondNumber) {
+        boolean x = firstNumber > secondNumber;
+
+        if (x) {
             subtractAndDisplay(firstNumber, secondNumber);
         } else {
             sumAndDisplay(firstNumber, secondNumber);
