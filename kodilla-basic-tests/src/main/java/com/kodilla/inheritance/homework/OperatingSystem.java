@@ -18,6 +18,6 @@ public class OperatingSystem {
         return year;
     }
     public void displayReleaseYear() {
-        System.out.println("Operating system was released in: " + year);
+        System.out.println("Operating system was released in: " + getYear());
     }
 }

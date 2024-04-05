@@ -7,6 +7,7 @@ public class Grades {
         this.grades = new int[10];
         this.size = 0;
     }
+
     public void add(int value) {
         if (this.size == 10) {
             return;
@@ -29,23 +30,30 @@ public class Grades {
         objectGrades.add(3);
         objectGrades.add(5);
 
-        showLast(objectGrades);
+        objectGrades.showLast();
+        objectGrades.showAverage();
 
 
         int numberOfGrades = objectGrades.size;
 
         System.out.println("size is " + numberOfGrades);
-
-        }
-
-    private static void showLast(Grades objectGrades) {
-            int lastGrade = grades[grades.length - 1];
-            int numberOfGrades = objectGrades.size;
-            if (numberOfGrades > 0);
-            System.out.println(lastGrade);
-
     }
 
+    private void showLast() {
+        int lastGrade = grades[grades.length - 1];
+        if (grades.length > 0) {
+            System.out.println(lastGrade);
+        }
+    }
+
+    private void showAverage() {
+        double sum = 0;
+        for (int i = 0; i < grades.length; i++) {
+            sum +=grades[i];
+        }
+        double average = sum/ grades.length;
+        System.out.println(average);
+    }
 }
 
 

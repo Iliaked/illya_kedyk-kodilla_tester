@@ -9,15 +9,11 @@ class WarehouseTestSuite {
     @Test
     public void testGetOrder_withException() {
         Warehouse warehouse = new Warehouse();
-        boolean exceptionThrown = false;
 
-        try {
+        OrderDoesntExistException exception = assertThrows(OrderDoesntExistException.class, () -> {
             warehouse.getOrder("111");
-        } catch (OrderDoesntExistException e) {
-            exceptionThrown = true;
-            assertEquals("Order number 111 doesn't exist.", e.getMessage());
-        }
+        });
 
-        assertTrue(exceptionThrown, "Expected OrderDoesntExistException to be thrown.");
+        assertEquals("Order number 111 doesn't exist.", exception.getMessage());
     }
 }

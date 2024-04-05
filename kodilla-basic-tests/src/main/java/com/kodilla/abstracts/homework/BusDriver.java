@@ -5,8 +5,4 @@ public class BusDriver extends Job {
         super(29.3, "Has to drive a bus");
     }
 
-    @Override
-    public void showResponsibilities() {
-        System.out.println(getResponsibilities());
-    }
 }

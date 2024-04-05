@@ -5,8 +5,4 @@ public class Firefighter extends Job {
         super(43.5, "Has to extinguish fire");
     }
 
-    @Override
-    public void showResponsibilities() {
-        System.out.println(getResponsibilities());
-    }
 }
