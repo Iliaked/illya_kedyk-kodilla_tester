@@ -4,7 +4,9 @@ import com.kodilla.stream.User;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -33,5 +35,12 @@ class ForumStatsTestSuite {
         double averagePosts = ForumStats.averagePostsForUsersBelow40(users);
 
         assertEquals(27.0, averagePosts);
+    }
+
+    @Test
+    public void testAveragePostsForUsersBelow40_Null() {
+        List<User> users = null;
+        double result = ForumStats.averagePostsForUsersBelow40(Optional.ofNullable(users).orElse(Collections.emptyList()));
+        assertEquals(0, result);
     }
 }
