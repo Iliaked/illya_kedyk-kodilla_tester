@@ -12,16 +12,18 @@ public class Application {
         students.add(new Student("Kasia Dudek", null));
         students.add(new Student("Jakub Kiwior", new Teacher("Monika Błaszczykowska")));
 
-
-
+        System.out.println(showStudentsAndTeachers(students));
+    }
+    public static String showStudentsAndTeachers(List<Student> students) {
+        String result = "";
         for (Student student : students) {
             String studentName = student.getName();
             Teacher teacherName = student.getTeacher();
             String optionalTeacher = Optional.ofNullable(teacherName)
-
                     .map(Teacher::getName)
                     .orElse("<undefined>");
-            System.out.println("Uczeń: " + studentName + ", nauczyciel: " + optionalTeacher);
+            result += "Uczeń: " + studentName + ", nauczyciel: " + optionalTeacher + "\n";
         }
+        return result;
     }
 }
