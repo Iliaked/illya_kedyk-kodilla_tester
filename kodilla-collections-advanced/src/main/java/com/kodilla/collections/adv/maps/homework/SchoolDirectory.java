@@ -1,9 +1,6 @@
 package com.kodilla.collections.adv.maps.homework;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class SchoolDirectory {
 
@@ -34,10 +31,16 @@ public class SchoolDirectory {
     }
 
     private static List<Integer> generateClassSizes() {
+        Random rand = new Random();
+        int n = rand.nextInt(40);
+        n += 15;
+
         List<Integer> classSizes = new ArrayList<>();
-        classSizes.add(25);
-        classSizes.add(30);
-        classSizes.add(28);
+        classSizes.add(n);
+        classSizes.add(n);
+        classSizes.add(n);
+        classSizes.add(n);
+        classSizes.add(n);
         return classSizes;
     }
 }
