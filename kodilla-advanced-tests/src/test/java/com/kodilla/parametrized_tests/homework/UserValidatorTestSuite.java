@@ -9,30 +9,18 @@ import java.util.regex.Pattern;
 
 public class UserValidatorTestSuite {
 
-    public boolean validateUsername(String username) {
-        return username.matches("^[a-zA-Z0-9._-]{3,}$");
-    }
+    UserValidator userValidator = new UserValidator();
 
     @ParameterizedTest
     @ValueSource(strings = { "user123", "user_name", "user.name", "USER-NAME", "123user" })
     void validUsernames(String username) {
-        assertTrue(validateUsername(username));
+        assertTrue(userValidator.validateUsername(username));
     }
 
     @ParameterizedTest
     @ValueSource(strings = { "u", "us", "us?", "user?" })
     void invalidUsernames(String username) {
-        assertFalse(validateUsername(username));
-    }
-
-    public boolean validateEmail(String email) {
-        if (null != email) {
-            String regex = "^([_a-zA-Z0-9-]+(\\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*(\\.[a-zA-Z]{1,6}))?$";
-            Pattern pattern = Pattern.compile(regex);
-            Matcher matcher = pattern.matcher(email);
-            return matcher.matches();
-        }
-        return false;
+        assertFalse(userValidator.validateUsername(username));
     }
 
     @ParameterizedTest
@@ -46,7 +34,7 @@ public class UserValidatorTestSuite {
             "user@subdomain.example.com",
     })
     void validEmails(String email) {
-        assertTrue(validateEmail(email));
+        assertTrue(userValidator.validateEmail(email));
     }
 
     @ParameterizedTest
@@ -60,6 +48,6 @@ public class UserValidatorTestSuite {
             "user@example_com"
     })
     void invalidEmails(String email) {
-        assertFalse(validateEmail(email));
+        assertFalse(userValidator.validateEmail(email));
     }
 }
