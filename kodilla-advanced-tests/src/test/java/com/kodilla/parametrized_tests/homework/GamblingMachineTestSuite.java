@@ -29,11 +29,14 @@ public class GamblingMachineTestSuite {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {1, 2, 3, 4, 5})
-    void testInvalidNumbersException_TooFewNumbers(int number) {
+    @ValueSource(strings = {"1,2,3,4,8", "1,2,3,4,5"})
+    void testInvalidNumbersException_TooFewNumbers(String numbers) {
+        String[] split = numbers.split(",");
         Set<Integer> userNumbers = new HashSet<>();
-        userNumbers.add(number);
-
+        for (String number : split) {
+            int i = Integer.parseInt(number);
+            userNumbers.add(i);
+        }
         GamblingMachine machine = new GamblingMachine();
         InvalidNumbersException exception = assertThrows(InvalidNumbersException.class, () -> machine.howManyWins(userNumbers));
 
@@ -41,22 +44,14 @@ public class GamblingMachineTestSuite {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {1, 2, 3, 4, 8, 12, 23})
-    void testInvalidNumbersException_TooManyNumbers(int number) {
+    @ValueSource(strings = {"1,2,3,4,8,9,10", "1,2,3,4,5,12,14"})
+    void testInvalidNumbersException_TooManyNumbers(String numbers) {
+        String[] split = numbers.split(",");
         Set<Integer> userNumbers = new HashSet<>();
-        userNumbers.add(number);
-
-        GamblingMachine machine = new GamblingMachine();
-        InvalidNumbersException exception = assertThrows(InvalidNumbersException.class, () -> machine.howManyWins(userNumbers));
-
-        assertEquals("Wrong numbers provided", exception.getMessage());
-    }
-    @ParameterizedTest
-    @ValueSource(ints = {1, 2, 3, 4, 8, 70})
-    void testInvalidNumbersExceptionNumbersOutOfRange(int number) {
-        Set<Integer> userNumbers = new HashSet<>();
-        userNumbers.add(number);
-
+        for (String number : split) {
+            int i = Integer.parseInt(number);
+            userNumbers.add(i);
+        }
         GamblingMachine machine = new GamblingMachine();
         InvalidNumbersException exception = assertThrows(InvalidNumbersException.class, () -> machine.howManyWins(userNumbers));
 
@@ -65,7 +60,7 @@ public class GamblingMachineTestSuite {
 
     @ParameterizedTest
     @ValueSource(strings = {"1,2,3,4,8,70", "1,2,3,4,5,66"})
-    void testInvalidNumbersExceptionNumbersOutOfRange1(String numbers) {
+    void testInvalidNumbersExceptionNumbersOutOfRange(String numbers) {
         String[] split = numbers.split(",");
         Set<Integer> userNumbers = new HashSet<>();
         for (String number : split) {
