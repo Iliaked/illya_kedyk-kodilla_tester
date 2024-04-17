@@ -5,6 +5,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -56,6 +57,21 @@ public class GamblingMachineTestSuite {
         Set<Integer> userNumbers = new HashSet<>();
         userNumbers.add(number);
 
+        GamblingMachine machine = new GamblingMachine();
+        InvalidNumbersException exception = assertThrows(InvalidNumbersException.class, () -> machine.howManyWins(userNumbers));
+
+        assertEquals("Wrong numbers provided", exception.getMessage());
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,3,4,8,70", "1,2,3,4,5,66"})
+    void testInvalidNumbersExceptionNumbersOutOfRange1(String numbers) {
+        String[] split = numbers.split(",");
+        Set<Integer> userNumbers = new HashSet<>();
+        for (String number : split) {
+            int i = Integer.parseInt(number);
+            userNumbers.add(i);
+        }
         GamblingMachine machine = new GamblingMachine();
         InvalidNumbersException exception = assertThrows(InvalidNumbersException.class, () -> machine.howManyWins(userNumbers));
 
