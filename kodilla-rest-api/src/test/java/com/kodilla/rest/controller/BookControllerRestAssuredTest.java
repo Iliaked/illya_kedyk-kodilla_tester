@@ -51,5 +51,18 @@ class BookControllerRestAssuredTest {
                 .status(HttpStatus.OK);
     }
 
+    @Test
+    void shouldAddBook() {
+        // given
+        BookDto newBook = new BookDto("Foundation", "Isaac Asimov");
 
+        // when then
+        given()
+                .contentType(ContentType.JSON)
+                .body(newBook)
+                .when()
+                .post("/books")
+                .then()
+                .status(HttpStatus.OK);
+    }
 }
