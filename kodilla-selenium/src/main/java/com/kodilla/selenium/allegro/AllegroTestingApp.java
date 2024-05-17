@@ -7,18 +7,21 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 
-//nie mogę sprawdzić czy aplikacja działa - allegro wykrywa że to jest bot i mnie blokuje
+//zmieniłem na Ebay
 
 public class AllegroTestingApp {
     public static void main(String[] args) {
         System.setProperty("webdriver.chrome.driver", "C:\\selenium-drivers\\Chrome\\chromedriver.exe");
         WebDriver driver = new ChromeDriver();
-        driver.get("https://allegro.pl/");
+        driver.get("https://ebay.pl/");
 
-        WebElement inputField = driver.findElement(By.xpath("//*[@name='string']"));
+        WebElement inputField = driver.findElement(By.xpath("//*[@name='_sacat']"));
+        inputField.sendKeys("Wszystko inne");
+        inputField = driver.findElement(By.xpath("//input[@class=\"gh-tb ui-autocomplete-input\"]"));
         inputField.sendKeys("Mavic mini");
-        inputField = driver.findElement(By.xpath("/html/body/div[2]/div[1]/header/div[1]/div/div/div/form/div[3]/div/select"));
-        inputField.sendKeys("Elektronika");
+
+        WebElement searchField = driver.findElement(By.xpath("//input[@class=\"btn btn-prim gh-spr\"]"));
+        searchField.click();
 
         Alert alert = driver.switchTo().alert();
         alert.accept();

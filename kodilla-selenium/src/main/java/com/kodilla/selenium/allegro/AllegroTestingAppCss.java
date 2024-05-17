@@ -13,27 +13,31 @@ import java.util.List;
 import static org.openqa.selenium.By.className;
 
 
-//nie mogę sprawdzić czy aplikacja działa - allegro wykrywa że to jest bot i mnie blokuje
-
 public class AllegroTestingAppCss {
     public static void main(String[] args) {
         System.setProperty("webdriver.chrome.driver", "C:\\selenium-drivers\\Chrome\\chromedriver.exe");
         WebDriver driver = new ChromeDriver();
-        driver.get("https://allegro.pl/");
+        driver.get("https://ebay.pl/");
 
-        WebElement inputField = driver.findElement(By.className("string"));
+        WebElement inputField = driver.findElement(By.id("gh-cat"));
+        inputField.sendKeys("Wszystko inne");
+        inputField = driver.findElement(By.id("gh-ac"));
         inputField.sendKeys("Mavic mini");
-        inputField = driver.findElement(By.xpath("/html/body/div[2]/div[1]/header/div[1]/div/div/div/form/div[3]/div/select"));
-        inputField.sendKeys("Elektronika");
+
+        WebElement searchField = driver.findElement(By.xpath("//input[@class=\"btn btn-prim gh-spr\"]"));
+        searchField.click();
 
         WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("string")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("srp-river-results")));
 
-        WebElement element = driver.findElement(className("#opbox-listing"));
-        List<WebElement> elements = driver.findElements(className("#opbox-listing"));
-        elements.get(0).getText();
+        List<WebElement> elements = driver.findElements(By.className("s-item__title"));
+        System.out.println("Number of elements found: " + elements.size());
 
-        Alert alert = driver.switchTo().alert();
-        alert.accept();
+        if (elements.size() > 0) {
+            String text = elements.get(1).getText(); //element 0 jest pusty, dlatego zaczynam od 1
+            System.out.println("First element text: " + text);
+        } else {
+            System.out.println("No elements found with class 's-item__title'");
+        }
     }
 }
