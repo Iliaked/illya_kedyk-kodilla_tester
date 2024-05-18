@@ -26,7 +26,7 @@ public class BrowserTest {
     @Test
     public void chromeTest() throws IOException {
         RemoteWebDriver driver = chromeContainer.getWebDriver();
-        driver.get("http://allegro.pl");
+        driver.get("http://ebay.pl");
 
         File screenshot = driver.getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(screenshot,

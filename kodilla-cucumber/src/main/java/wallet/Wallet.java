@@ -13,7 +13,11 @@ public class Wallet {
     public int getBalance() {
         return balance;
     }
-    public void debit(int money) {
-        this.balance -= money;
+
+    public void debit (int money) throws InsufficientFundsException {
+        if (money > balance) {
+            throw new InsufficientFundsException("Insufficient funds");
+        }
+        balance -= money;
     }
 }
