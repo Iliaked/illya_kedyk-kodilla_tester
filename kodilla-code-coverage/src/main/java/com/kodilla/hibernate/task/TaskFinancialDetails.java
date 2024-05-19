@@ -1,4 +1,4 @@
-package com.kodilla.hibernate.task;
-
-public class TaskFinancialDetails {
-}
+//package com.kodilla.hibernate.task;
+//
+//public class TaskFinancialDetails {
+//}

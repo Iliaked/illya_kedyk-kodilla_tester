@@ -1,10 +1,14 @@
 package com.kodilla.spotbugs;
 
+import java.util.Objects;
+
+import static java.lang.Math.PI;
+
 public class BadCodeExample {
     private String type;
 
     public static double getPi() {
-        return 3.14;
+        return PI;
     }
 
     public String getType() {
@@ -18,6 +22,11 @@ public class BadCodeExample {
 
         BadCodeExample badCodeExample = (BadCodeExample) o;
 
-        return type != null ? type.equals(badCodeExample.type) : badCodeExample.type == null;
+        return Objects.equals(type, badCodeExample.type);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(type);
     }
 }
