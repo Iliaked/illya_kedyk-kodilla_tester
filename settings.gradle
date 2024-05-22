@@ -12,4 +12,5 @@ include 'kodilla-login-selenium'
 include 'kodilla-cucumber'
 include 'kodilla-code-coverage'
 include 'kodilla-testcontainers'
+include 'gradle-build-script'
 
