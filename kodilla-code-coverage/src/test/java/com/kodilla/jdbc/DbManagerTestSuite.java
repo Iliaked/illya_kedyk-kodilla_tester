@@ -80,7 +80,7 @@ class DbManagerTestSuite {
             System.out.println("User: " + firstName + " " + lastName + " - Posts: " + postsNumber);
 
             int counter = getPostsCount(rs);
-            int expected = count + 2;
+            int expected = count + 3;
             Assertions.assertEquals(expected, counter);
         }
 
@@ -92,7 +92,7 @@ class DbManagerTestSuite {
             new AbstractMap.SimpleEntry<>(9, "Post 1 by User 9"),
             new AbstractMap.SimpleEntry<>(9, "Post 2 by User 9"),
             new AbstractMap.SimpleEntry<>(11, "Post 1 by User 11"),
-            new AbstractMap.SimpleEntry<>(7, "Post 1 by User 7"),
+            new AbstractMap.SimpleEntry<>(7, "Post 2 by User 11"),
             new AbstractMap.SimpleEntry<>(7, "Post 2 by User 7"),
             new AbstractMap.SimpleEntry<>(7, "Post 3 by User 7")
     );
