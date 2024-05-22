@@ -1,39 +1,32 @@
 package com.kodilla.bank.homework;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CashMachine {
-    private int[] transactions;
-    private int size;
+    private List<Integer> transactions;
 
     public CashMachine() {
-        this.transactions = new int[20];
-        this.size = 0;
+        this.transactions = new ArrayList<>();
     }
 
-    public void cashIn(int amount) {
-        if (amount > 0) {
-            transactions[size++] = amount;
-        } else {
-            System.out.println("Wrong amount, try again.");
-        }
-    }
-
-    public void cashOut(int amount) {
-        if (amount > 0) {
-            transactions[size++] = -amount;
-        } else {
-            System.out.println("Wrong amount, try again.");
-        }
+    public void addTransaction(int amount) {
+        transactions.add(amount);
     }
 
     public int getBalance() {
         int balance = 0;
-        for (int i = 0; i < size; i++) {
-            balance = balance + transactions[i];
+        for (int transaction : transactions) {
+            balance += transaction;
         }
         return balance;
     }
 
-    public int getTransactionQuantity() {
-        return size;
+    public int getNumberOfTransactions() {
+        return transactions.size();
+    }
+
+    public List<Integer> getTransactions() {
+        return transactions;
     }
 }
